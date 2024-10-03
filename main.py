@@ -1,6 +1,7 @@
 import cv2
 from colorama import Fore, Style
 from practices.image_structure import image_structure
+from practices.basic_operators import basic_operators
 from utils import utils
 
 
@@ -27,6 +28,18 @@ def main():
         main()
     elif choice == 2:
         image_structure.write_gray_csv(image=utils.img_to_gray(image), filename=f'{image_name}_GRAY.csv')
+        main()
+    elif choice == 3:
+        basic_operators.write_intensity_csv(image=utils.img_to_gray(image), filename=f'{image_name}_INTENSITY.csv')
+        main()
+    elif choice == 4:
+        basic_operators.write_copy_csv(image=utils.img_to_gray(image), filename=f'{image_name}_COPY.csv')
+        main()
+    elif choice == 5:
+        basic_operators.write_negative_csv(image=utils.img_to_gray(image), filename=f'{image_name}_NEGATIVE.csv')
+        main()
+    elif choice == 6:
+        basic_operators.write_increment_decrement_csv(image=utils.img_to_gray(image),filename=f'{image_name}_INCREMENT_DECREMENT.csv')
         main()
 
 

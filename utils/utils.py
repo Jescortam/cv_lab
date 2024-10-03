@@ -4,13 +4,13 @@ from numpy import ndarray
 
 def regularize(image : ndarray) -> ndarray:
     copy = np.array(image.copy())
-    _height, _width = copy.shape
-    temp_img = np.zeros((_height, _width))
+    height, width = copy.shape
+    temp_img = np.zeros((height, width))
     is_negative = False
     is_overgrown = False
 
-    for i in range(0, _height):
-        for j in range(0, _width):
+    for i in range(0, height):
+        for j in range(0, width):
             temp_img[i][j] = copy[i][j]
             if temp_img[i][j] > 1:
                 is_overgrown = True
@@ -20,14 +20,14 @@ def regularize(image : ndarray) -> ndarray:
     if is_negative:
         minimum = temp_img.min()
         absolute = np.absolute(minimum)
-        for i in range(0, _height):
-            for j in range(0, _width):
+        for i in range(0, height):
+            for j in range(0, width):
                 temp_img[i][j] = temp_img[i][j] + absolute
 
     if is_overgrown:
         maximum = temp_img.max()
-        for i in range(0, _height):
-            for j in range(0, _width):
+        for i in range(0, height):
+            for j in range(0, width):
                 temp_img[i][j] = temp_img[i][j] / np.absolute(maximum) * 1
 
     return temp_img
