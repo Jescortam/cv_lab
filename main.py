@@ -1,5 +1,7 @@
 import cv2
 from colorama import Fore, Style
+from practices.image_structure import image_structure
+from utils import utils
 
 
 def main():
@@ -20,7 +22,12 @@ def main():
     print(Fore.GREEN + '9 - Quit' + Style.RESET_ALL)
     choice = int(input('Select an option : '))
 
-
+    if choice == 1:
+        image_structure.write_rgb_csv(image=image, filename=f'{image_name}_RGB.csv')
+        main()
+    elif choice == 2:
+        image_structure.write_gray_csv(image=utils.img_to_gray(image), filename=f'{image_name}_GRAY.csv')
+        main()
 
 
 if __name__ == '__main__':
