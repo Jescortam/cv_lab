@@ -1,5 +1,6 @@
 import numpy as np
 from numpy import ndarray
+import os
 
 
 def regularize(image : ndarray) -> ndarray:
@@ -40,3 +41,9 @@ def img_to_gray(image : ndarray) -> ndarray:
         for j in range(0, _width):
             gray_img[i][j] = (image[i][j][0] * 0.33 + image[i][j][1] * 0.33 + image[i][j][2] * 0.33) / 255
     return gray_img
+
+
+def clean_csv_files() -> None:
+    filelist = [ f for f in os.listdir(os.getcwd()) if f.endswith(".csv") ]
+    for f in filelist:
+        os.remove(os.path.join(os.getcwd(), f))

@@ -20,7 +20,8 @@ def main():
     print('6 - Increment/decrement of brightness')
     print(Fore.RED + '7 - Contrast elongation/reduction')
     print('8 - Shifting H/V/D')
-    print(Fore.GREEN + '9 - Quit' + Style.RESET_ALL)
+    print(Fore.GREEN + '9 - Clean CSV')
+    print('10 - Quit' + Style.RESET_ALL)
     choice = int(input('Select an option : '))
 
     if choice == 1:
@@ -40,6 +41,9 @@ def main():
         main()
     elif choice == 6:
         basic_operators.write_increment_decrement_csv(image=utils.img_to_gray(image),filename=f'{image_name}_INCREMENT_DECREMENT.csv')
+        main()
+    elif choice == 9:
+        utils.clean_csv_files()
         main()
 
 
