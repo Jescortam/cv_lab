@@ -24,27 +24,28 @@ def main():
     print('10 - Quit' + Style.RESET_ALL)
     choice = int(input('Select an option : '))
 
-    if choice == 1:
-        image_structure.write_rgb_csv(image=image, filename=f'{image_name}_RGB.csv')
-        main()
-    elif choice == 2:
-        image_structure.write_gray_csv(image=utils.img_to_gray(image), filename=f'{image_name}_GRAY.csv')
-        main()
-    elif choice == 3:
-        basic_operators.write_intensity_csv(image=utils.img_to_gray(image), filename=f'{image_name}_INTENSITY.csv')
-        main()
-    elif choice == 4:
-        basic_operators.write_copy_csv(image=utils.img_to_gray(image), filename=f'{image_name}_COPY.csv')
-        main()
-    elif choice == 5:
-        basic_operators.write_negative_csv(image=utils.img_to_gray(image), filename=f'{image_name}_NEGATIVE.csv')
-        main()
-    elif choice == 6:
-        basic_operators.write_increment_decrement_csv(image=utils.img_to_gray(image),filename=f'{image_name}_INCREMENT_DECREMENT.csv')
-        main()
-    elif choice == 9:
-        utils.clean_csv_files()
-        main()
+    match choice:
+        case 1:
+            image_structure.write_rgb_csv(image=image, filename=f'{image_name}_RGB.csv')
+            main()
+        case 2:
+            image_structure.write_gray_csv(image=utils.img_to_gray(image), filename=f'{image_name}_GRAY.csv')
+            main()
+        case 3:
+            basic_operators.write_intensity_csv(image=utils.img_to_gray(image), filename=f'{image_name}_INTENSITY.csv')
+            main()
+        case 4:
+            basic_operators.write_copy_csv(image=utils.img_to_gray(image), filename=f'{image_name}_COPY.csv')
+            main()
+        case 5:
+            basic_operators.write_negative_csv(image=utils.img_to_gray(image), filename=f'{image_name}_NEGATIVE.csv')
+            main()
+        case 6:
+            basic_operators.write_increment_decrement_csv(image=utils.img_to_gray(image),filename=f'{image_name}_INCREMENT_DECREMENT.csv')
+            main()
+        case 9:
+            utils.clean_csv_files()
+            main()
 
 
 if __name__ == '__main__':
