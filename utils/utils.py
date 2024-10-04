@@ -1,9 +1,20 @@
+import cv2
 import numpy as np
 from numpy import ndarray
 import os
+import csv
 
 
-def regularize(image : ndarray) -> ndarray:
+def write_csv(filename: str, suffix : str, image: ndarray):
+    with open(filename, mode="w") as csv_file:
+        _csv = csv.writer(csv_file)
+        _csv.writerows(image)
+    cv2.imshow(suffix, image)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+
+def regularize(image: ndarray) -> ndarray:
     copy = np.array(image.copy())
     height, width = copy.shape
     temp_img = np.zeros((height, width))
@@ -34,7 +45,7 @@ def regularize(image : ndarray) -> ndarray:
     return temp_img
 
 
-def img_to_gray(image : ndarray) -> ndarray:
+def img_to_gray(image: ndarray) -> ndarray:
     _height, _width, _ = image.shape
     gray_img = np.zeros((_height, _width))
     for i in range(0, _height):
@@ -44,6 +55,6 @@ def img_to_gray(image : ndarray) -> ndarray:
 
 
 def clean_csv_files() -> None:
-    filelist = [ f for f in os.listdir(os.getcwd()) if f.endswith(".csv") ]
+    filelist = [f for f in os.listdir(os.getcwd()) if f.endswith(".csv")]
     for f in filelist:
         os.remove(os.path.join(os.getcwd(), f))
