@@ -7,7 +7,7 @@ from numpy import ndarray
 import utils.utils
 
 
-def write_intensity_csv(image : ndarray, filename : str) -> None:
+def write_intensity_csv(image: ndarray, filename: str) -> None:
     img_height, img_width = image.shape
     intensity = int(input('Intensity : '))
     if not -1 < intensity < 256:
@@ -21,7 +21,7 @@ def write_intensity_csv(image : ndarray, filename : str) -> None:
     utils.utils.write_csv(filename=filename, suffix='INTENSITY', image=copy_img)
 
 
-def write_copy_csv(image : ndarray, filename : str) -> None:
+def write_copy_csv(image: ndarray, filename: str) -> None:
     copy = image.copy()
     with open(filename, mode="w") as csv_file:
         _csv = csv.writer(csv_file)
@@ -32,13 +32,13 @@ def write_copy_csv(image : ndarray, filename : str) -> None:
     cv2.destroyAllWindows()
 
 
-def write_negative_csv(image : ndarray, filename : str) -> None:
+def write_negative_csv(image: ndarray, filename: str) -> None:
     copy = image.copy()
     copy = 1 - copy
-    utils.utils.write_csv(filename,'NEGATIVE',copy)
+    utils.utils.write_csv(filename, 'NEGATIVE', copy)
 
 
-def write_increment_decrement_csv(image : ndarray, filename : str) -> None:
+def write_increment_decrement_csv(image: ndarray, filename: str) -> None:
     copy = np.array(image.copy())
     height, width = copy.shape
     increment = int(input('Increment/decrement : '))
@@ -74,5 +74,18 @@ def write_increment_decrement_csv(image : ndarray, filename : str) -> None:
         _csv.writerows(temp_img)
     cv2.imshow("ORIGINAL", image)
     cv2.imshow("INCREMENT/DECREMENT", temp_img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+
+def contrast_elongation(image: ndarray, factor: float, filename: str) -> None:
+    copy = image.copy()
+    media = np.mean(copy)
+    contrast = np.clip((copy - media) * factor, 0, 1)
+    with open(filename, mode="w") as csv_file:
+        _csv = csv.writer(csv_file)
+        _csv.writerows(contrast)
+    cv2.imshow("ORIGINAL", copy)
+    cv2.imshow("ELONGATION", contrast)
     cv2.waitKey(0)
     cv2.destroyAllWindows()

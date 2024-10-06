@@ -43,6 +43,9 @@ def main():
         case 6:
             basic_operators.write_increment_decrement_csv(image=utils.img_to_gray(image),filename=f'{image_name}_INCREMENT_DECREMENT.csv')
             main()
+        case 7:
+            basic_operators.contrast_elongation(image=utils.img_to_gray(image), factor=1.5, filename=f'{image_name}_ELONGATION.csv')
+            main()
         case 9:
             utils.clean_csv_files()
             main()
