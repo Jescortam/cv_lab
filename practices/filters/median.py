@@ -80,40 +80,43 @@ def matriz_inicial(img):
 
     return x, y, xF, yF
 
+def main():
+    img = cv2.imread("../../img/image.png", 0)
+    np.set_printoptions(threshold=np.inf)
+    cv2.imshow("Imagen original", img)
+    x, y, xF, yF = matriz_inicial(img)
 
-img = cv2.imread("../../img/somewhere_in_time.jpg", 0)
-np.set_printoptions(threshold=np.inf)
-cv2.imshow("Imagen original", img)
-x, y, xF, yF = matriz_inicial(img)
+    # Se obtiene el pedazo de la matriz
+    submatriz = obtener_submatriz(img, x, y, xF, yF)
 
-# Se obtiene el pedazo de la matriz
-submatriz = obtener_submatriz(img, x, y, xF, yF)
+    #Se convierte a arreglo
+    arreglo = np.ravel(submatriz)
 
-#Se convierte a arreglo
-arreglo = np.ravel(submatriz)
+    # Sacar el promedio
+    suma_valores = sum(arreglo)
+    cantidad_elementos = len(arreglo)
+    promedio = suma_valores / cantidad_elementos
+    print("El promedio es", promedio)
 
-# Sacar el promedio
-suma_valores = sum(arreglo)
-cantidad_elementos = len(arreglo)
-promedio = suma_valores / cantidad_elementos
-print("El promedio es", promedio)
+    # Sacar la mediana
+    mediana = calcular_mediana(arreglo)
+    print("La mediana del arreglo es:", mediana)
 
-# Sacar la mediana
-mediana = calcular_mediana(arreglo)
-print("La mediana del arreglo es:", mediana)
+    # Sacar la dispersion de cada valor
+    arregloDisp = dispersion_valores(arreglo, promedio)
+    # Arreglo ya corregido
+    arregloF = cambiar_valores(arregloDisp, arreglo, mediana)
 
-# Sacar la dispersion de cada valor
-arregloDisp = dispersion_valores(arreglo, promedio)
-# Arreglo ya corregido
-arregloF = cambiar_valores(arregloDisp, arreglo, mediana)
+    # Aqui se convierte el arreglo final de nuevo a una matriz
+    matriz_final = convertir_arreglo_a_matriz(arregloF, submatriz.shape)
 
-# Aqui se convierte el arreglo final de nuevo a una matriz
-matriz_final = convertir_arreglo_a_matriz(arregloF, submatriz.shape)
+    imagenModificada = integrar_matriz_original(matriz_final, img, x, y)
 
-imagenModificada = integrar_matriz_original(matriz_final, img, x, y)
+    cv2.imshow("Imagen modificada", imagenModificada)
+
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
 
-cv2.imshow("Imagen modificada", imagenModificada)
-
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+if __name__ == '__main__':
+    main()
