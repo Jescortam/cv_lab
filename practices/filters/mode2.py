@@ -31,13 +31,18 @@ def aplicar_filtro_moda(imagen, kernel_size=3):
     return imagen_filtrada
 
 
-imagen = cv2.imread('../../img/image.png')
+def main():
+    imagen = cv2.imread('../../img/image.png')
 
-# Aplicar filtro de moda
-imagen_moda = aplicar_filtro_moda(imagen, kernel_size=5)
+    # Aplicar filtro de moda
+    imagen_moda = aplicar_filtro_moda(imagen, kernel_size=5)
 
-# Mostrar las imágenes
-cv2.imshow('Original', imagen)
-cv2.imshow('Filtrada con Moda', imagen_moda)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+    # Mostrar las imágenes
+    cv2.imshow('Original', imagen)
+    cv2.imshow('Filtrada con Moda', imagen_moda)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+
+if __name__ == '__main__':
+    main()
