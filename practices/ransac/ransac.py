@@ -1,6 +1,9 @@
+from cv2.typing import MatLike
 
 
-def ransac_method():
+def ransac_method(image: MatLike):
+    Mmax = 0
+
     pass
 
 
