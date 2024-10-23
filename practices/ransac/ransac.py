@@ -4,7 +4,7 @@ import utils.utils as utils
 
 
 def ransac_method(image: MatLike):
-    Mmax = 0
+    m_max = 0
 
     pass
 
