@@ -1,19 +1,16 @@
-from cv2.typing import MatLike
-import cv2
-import utils.utils as utils
+import numpy as np
+from tkinter import filedialog
+from numpy import ndarray
 
 
-def ransac_method(image: MatLike):
-    m_max = 0
-
+def ransac_method(votes_matrix : ndarray, m_max : int):
     pass
 
 
 def __run__():
-    image = cv2.imread('../../img/corn.jpeg')
-    gray_image = utils.img_to_gray(image)
-    cv2.imshow('image', gray_image)
-    cv2.waitKey(0)
+    votes_matrix = np.loadtxt(filedialog.askopenfilename())
+    m_max = int(input('Minimum votes number'))
+    ransac_method(votes_matrix, m_max)
 
 
 if __name__ == '__main__':
